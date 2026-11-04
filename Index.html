@@ -1,0 +1,132 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Criativa IA</title>
+<style>
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  background: #111;
+  color: white;
+}
+header {
+  text-align: center;
+  padding: 30px 10px;
+}
+h1 { color: #d4af37; font-size: 34px; }
+header p { color: #ccc; }
+main {
+  max-width: 500px;
+  margin: auto;
+  background: #1d1d1d;
+  padding: 22px;
+  border: 1px solid #a88727;
+  border-radius: 15px;
+}
+label { display: block; margin: 15px 0 8px; }
+input, select, textarea {
+  width: 100%;
+  padding: 13px;
+  border-radius: 8px;
+  border: 1px solid #555;
+  background: #292929;
+  color: white;
+  font-size: 16px;
+}
+button {
+  width: 100%;
+  padding: 15px;
+  margin-top: 18px;
+  background: #d4af37;
+  color: #111;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 16px;
+}
+#resultado {
+  margin-top: 20px;
+  padding: 15px;
+  background: #292929;
+  border-radius: 8px;
+  line-height: 1.6;
+  white-space: pre-wrap;
+}
+footer {
+  text-align: center;
+  color: #999;
+  margin-top: 30px;
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>✨ Criativa IA</h1>
+  <p>Suas ideias. Nossa criatividade.</p>
+</header>
+
+<main>
+  <h2>Crie seu texto</h2>
+  <p>Escolha uma opção e transforme sua ideia em palavras.</p>
+
+  <label>O que você deseja criar?</label>
+  <select id="tipo">
+    <option value="mensagem">Mensagem especial</option>
+    <option value="legenda">Legenda para redes sociais</option>
+    <option value="produto">Descrição de produto</option>
+    <option value="motivacao">Frase de motivação</option>
+  </select>
+
+  <label>Sobre qual assunto?</label>
+  <textarea id="assunto" rows="4" placeholder="Escreva sua ideia aqui..."></textarea>
+
+  <button onclick="criarTexto()">Criar meu texto</button>
+
+  <div id="resultado">Seu texto aparecerá aqui.</div>
+  <button onclick="copiar()">Copiar texto</button>
+</main>
+
+<footer>
+  Criativa IA © 2026
+</footer>
+
+<script>
+function criarTexto() {
+  const tipo = document.getElementById("tipo").value;
+  const assunto = document.getElementById("assunto").value.trim();
+  const resultado = document.getElementById("resultado");
+
+  if (!assunto) {
+    resultado.innerText = "Escreva um assunto primeiro!";
+    return;
+  }
+
+  const modelos = {
+    mensagem: `Às vezes, as palavras certas fazem toda a diferença. Hoje quero falar sobre ${assunto}. Que este momento seja especial e cheio de coisas boas!`,
+    legenda: `${assunto} ✨ Cada momento tem sua beleza. Valorize as pequenas coisas e aproveite a jornada!`,
+    produto: `Conheça nosso produto: ${assunto}. Uma opção pensada para oferecer praticidade e qualidade. Entre em contato para saber mais!`,
+    motivacao: `Nunca deixe de acreditar em seus sonhos. ${assunto} pode ser o começo de uma grande conquista. Continue!`
+  };
+
+  resultado.innerText = modelos[tipo];
+}
+
+function copiar() {
+  const texto = document.getElementById("resultado").innerText;
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(texto)
+      .then(() => alert("Texto copiado!"));
+  } else {
+    alert("Selecione e copie o texto manualmente.");
+  }
+}
+</script>
+
+</body>
+</html>
